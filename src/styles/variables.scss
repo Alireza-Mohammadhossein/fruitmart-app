@@ -1,0 +1,24 @@
+:root {
+  --primary-color: #ab6bff;
+  --secondary-color: #ff3eff;
+  --background-color: #8b4cff;
+  --main-text-color: #1e1e1e;
+  --text-color-white: #ffffff;
+  --text-color-dark: #1e1e1e;
+  --body-bg: #ffffff;
+  --dialogue-background: #ffffff;
+  --font-size-large: 28px;
+  --font-size-medium: 22px;
+  --font-size-small: 16px;
+  --max-width: 1200px;
+}
+
+/* Dark theme overrides */
+[data-theme='dark'] {
+  --primary-color: #6A1E55;
+  --secondary-color: #A64D79;
+  --background-color: #3B1C32;
+  --main-text-color: #ffffff;
+  --body-bg: #1A1A1D;
+  --dialogue-background: #3B1C32;
+}

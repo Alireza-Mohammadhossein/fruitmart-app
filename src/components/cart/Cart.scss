@@ -1,0 +1,29 @@
+.cart {
+  padding: 15px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  &__header {
+    font-size: var(--font-size-medium);
+    color: var(--main-text-color);
+  }
+
+  &__content {
+    th, td {
+      color: var(--main-text-color);
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__title {
+      font-size: var(--font-size-medium);
+      color: var(--main-text-color);
+    }
+  }
+}
