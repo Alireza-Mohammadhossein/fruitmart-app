@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 
 import { clearCart } from '../../store/cartSlice';
-import { resetStock, increaseStock } from '../../store/stockSlice';
+import { increaseStock } from '../../store/stockSlice';
 import { RootState } from '../../store/store';
 
 import { LinearProgress } from "@mui/material";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -15,15 +15,15 @@ import 'react-toastify/dist/ReactToastify.css';
 const Timer: React.FC = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state: RootState) => state.cart.items);
-
-
-  const [timer, setTimer] = useState(30);
-  const [isTimerRunning, setIsTimerRunning] = useState(false);
-
-  const progress = (timer / 30) * 100;
   
 
-  const notify = () => toast("Wow so easy!");
+
+  const [timer, setTimer] = useState(300);
+  const [isTimerRunning, setIsTimerRunning] = useState(false);
+
+  const progress = (timer / 300) * 100;
+  
+
 
 
   // Start timer when the first item is added to the cart
@@ -32,7 +32,7 @@ const Timer: React.FC = () => {
       setIsTimerRunning(true);
     } else {
       setIsTimerRunning(false);
-      setTimer(30); // Reset the timer when the cart is emptied
+      setTimer(300); // Reset the timer when the cart is emptied
     }
   }, [cartItems]);
 
@@ -76,7 +76,7 @@ const Timer: React.FC = () => {
       handleEmptyCart()
       // dispatch(clearCart());
       // dispatch(resetStock());
-      setTimer(30); // Reset the timer
+      setTimer(300); // Reset the timer
       setIsTimerRunning(false); // Stop the timer
     }
   }, [timer, dispatch]);

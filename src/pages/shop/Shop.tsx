@@ -53,7 +53,7 @@ const Shop: React.FC = () => {
 
     // Fetch stock levels initially
     fetchStock();
-    const interval = setInterval(fetchStock, 30000);
+    const interval = setInterval(fetchStock, 300000);
 
     return () => clearInterval(interval); // Cleanup on unmount
   }, [dispatch]);

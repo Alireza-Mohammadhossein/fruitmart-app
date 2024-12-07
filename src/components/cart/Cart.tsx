@@ -4,6 +4,9 @@ import { RootState } from '../../store/store';
 import { removeItem, clearCart } from '../../store/cartSlice';
 import { increaseStock } from '../../store/stockSlice';
 
+import { addItem } from '../../store/cartSlice';
+import { reduceStock } from '../../store/stockSlice'; // Import the updateStock action
+
 import './Cart.scss';
 
 import { Table, TableBody, TableCell, TableHead, TableRow }  from '@mui/material';
@@ -15,6 +18,11 @@ const Cart: React.FC = () => {
 
   const dispatch = useDispatch();
   const cart = useSelector((state: RootState) => state.cart);
+  const stock = useSelector((state: RootState) => state.stock);
+
+  console.log('cart.tsx stock', stock)
+  console.log('cart.tsx cart', cart)
+
 
   const handleDecrement = (itemName: string) => {
     const itemInCart = cart.items.find(item => item.name === itemName);
@@ -30,6 +38,15 @@ const Cart: React.FC = () => {
     });
     dispatch(clearCart());
     // if (closeDialog) closeDialog();
+  };
+
+  const handleAddToCart = (name: string, price: number) => {
+    if (stock[name] > 0) {
+      dispatch(addItem({ name, price, quantity: 1 }));
+      dispatch(reduceStock(name));
+    } else {
+      alert(`${name} is out of stock`);
+    }
   };
 
 
@@ -51,6 +68,7 @@ const Cart: React.FC = () => {
                     <TableCell>Fruit</TableCell>
                     <TableCell align="right">Quantity</TableCell>
                     <TableCell align="right">Price</TableCell>
+                    <TableCell align="right">Total</TableCell>
                     <TableCell align="right">Actions</TableCell>
                   </TableRow>
                 </TableHead>
@@ -63,12 +81,20 @@ const Cart: React.FC = () => {
                       <TableCell>{item.name}</TableCell>
                       <TableCell align="right">{item.quantity}</TableCell>
                       <TableCell align="right">${item.price}</TableCell>
+                      <TableCell align="right">${item.quantity * item.price}</TableCell>
                       <TableCell align="right">
                         <button
                           className='btn btn--secondary'
                           onClick={() => handleDecrement(item.name)}
                         >
                           --
+                        </button>
+                        <button
+                          className='btn btn--secondary ml-5'
+                          disabled={stock[item.name] === 0}
+                          onClick={() => handleAddToCart(item.name, item.price)}
+                        >
+                          +
                         </button>
                       </TableCell>
                     </TableRow>
@@ -78,7 +104,7 @@ const Cart: React.FC = () => {
             </div>
       
             <div className='cart__footer'>
-              <p className='cart__footer__title'>Total: ${cart.total.toFixed(2)}</p>
+              <p className='cart__footer__title'>Cart Total: ${cart.total}</p>
               <button
                 className='btn btn--primary'
                 onClick={handleEmptyCart}

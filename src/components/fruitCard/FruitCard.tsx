@@ -10,7 +10,7 @@ interface FruitCardProps {
 }
 
 const FruitCard: React.FC<FruitCardProps> = ({ name, price, image, stock, loading, onAddToCart }) => {
-
+  
   return (
     <div className="shop__item">
       <div className="shop__item__img">
