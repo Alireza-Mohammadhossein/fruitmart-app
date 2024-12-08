@@ -1,13 +1,14 @@
 import React from 'react';
+
+import { ToastContainer } from 'react-toastify';
+
 import Header from './components/header/Header';
 import Slider from './components/slider/Slider';
 import Shop from './pages/shop/Shop';
 
-import { ToastContainer, toast } from 'react-toastify';
 
 
-const App: React.FC = () => {
-  
+const App: React.FC = () => {  
   return (
     <>
       <ToastContainer toastStyle={{ backgroundColor: 'var(--secondary-color)' }} />

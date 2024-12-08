@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import './Shop.scss';
-
 import { useDispatch, useSelector } from 'react-redux';
+
 import { addItem } from '../../store/cartSlice';
-import { reduceStock, updateStock } from '../../store/stockSlice'; // Import the updateStock action
+import { reduceStock, updateStock } from '../../store/stockSlice';
 import { RootState, AppDispatch } from '../../store/store';
-import { fruits, mockApi } from '../../mocks/stockApi'; // Import the mock API
+
+import { fruits, mockApi } from '../../mocks/stockApi';
+
 import FruitCard from '../../components/fruitCard/FruitCard';
 
+import './Shop.scss';
 
 
 
@@ -24,21 +26,24 @@ const Shop: React.FC = () => {
   useEffect(() => {
     const fetchStock = async () => {
       try {
-        const stockLevels = await mockApi.getStockLevels(); // Call the mock API
-        dispatch(updateStock(stockLevels)); // Update stock in Redux store
-        setLoading(false); // Data fetched, disable loading
+        const stockLevels = await mockApi.getStockLevels();
+        dispatch(updateStock(stockLevels));
+        setLoading(false);
       } catch (error) {
         console.error('Failed to fetch stock levels:', error);
-        setLoading(false); // Stop loading even if an error occurs
+        setLoading(false);
       }
     };
 
     // Fetch stock levels initially
     fetchStock();
+
+    //Set 5 minutes timer to refetch the stock
     const interval = setInterval(fetchStock, 300000);
 
     return () => clearInterval(interval); // Cleanup on unmount
   }, [dispatch]);
+  
 
   const handleAddToCart = (id:number ,name: string, price: number) => {
     if (stock[id] > 0) {

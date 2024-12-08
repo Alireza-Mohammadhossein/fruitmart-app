@@ -19,13 +19,10 @@ const FruitCard: React.FC<FruitCardProps> = ({ id, name, price, image, stock, lo
       </div>
 
       <h3 className="shop__item__name">{name}</h3>
-
       <p className="shop__item__info">Produced by organic materials</p>
-
       <p className="shop__item__info">Price: ${price}</p>
-
       <p className="shop__item__info">Stock: {loading ? 'Loading...' : stock}</p>
-
+      
       <div className="shop__item__action">
         {!loading && (
           <button

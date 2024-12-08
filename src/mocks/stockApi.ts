@@ -28,7 +28,6 @@ export const fruits = [
 
 export const mockApi = {
   getStockLevels: async () => {
-    // Simulate an API call with a delay
     await new Promise((resolve) => setTimeout(resolve, 1500)); // Simulate delay
     return {
       0: 6,

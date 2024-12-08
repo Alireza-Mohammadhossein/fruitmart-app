@@ -1,30 +1,29 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { useTheme } from '../../context/ThemeContext';
-
-import './Header.scss';
-
-import Cart from '../cart/Cart';
-import Timer from '../timer/Timer';
 
 import { IconButton, Badge, Dialog, Switch, FormControlLabel, FormGroup } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 
+import Cart from '../cart/Cart';
+import Timer from '../timer/Timer';
+
+import './Header.scss';
+
 
 
 const Header: React.FC = () => {
   const cart = useSelector((state: RootState) => state.cart);
+  
+  const { theme, toggleTheme } = useTheme();
 
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
-  const { theme, toggleTheme } = useTheme();
-
 
 
   return (
@@ -48,7 +47,6 @@ const Header: React.FC = () => {
             </Badge>
           </IconButton>
 
-
           <IconButton onClick={toggleTheme} className='header__actions-btn'>
             {theme === 'light' ? (
               <LightModeIcon/>
@@ -57,11 +55,9 @@ const Header: React.FC = () => {
             )}
           </IconButton>
          
-
           <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
             <Cart />
           </Dialog>
-          
         </div>
       </div>
     </header>

@@ -1,11 +1,12 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
-import './styles/global.scss';
 import { Provider } from 'react-redux';
+import { ThemeProvider } from './context/ThemeContext'; 
+
+import App from './App';
 import store from './store/store';
 
-import { ThemeProvider } from './context/ThemeContext'; 
+import './styles/global.scss';
+
 
 
 

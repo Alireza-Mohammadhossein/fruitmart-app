@@ -12,7 +12,6 @@ type StockState = {
 
 const initialState: StockState = {};
 
-
 const stockSlice = createSlice({
   name: 'stock',
   initialState,
@@ -22,12 +21,15 @@ const stockSlice = createSlice({
         state[action.payload] -= 1;
       }
     },
+
     increaseStock(state, action: PayloadAction<{ id:number, quantity: number }>) {
       state[action.payload.id] += action.payload.quantity;
     },
+    
     resetStock() {
       return initialState;
     },
+    
     updateStock(state, action: PayloadAction<StockState>) {
       return action.payload; // Replace stock with fetched levels
     },
