@@ -17,6 +17,7 @@ const Shop: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const stock = useSelector((state: RootState) => state.stock);
 
+
   const [loading, setLoading] = useState(true);
 
   // Fetch stock levels periodically using the mock API
@@ -61,7 +62,7 @@ const Shop: React.FC = () => {
               name={fruit.name}
               price={fruit.price}
               image={fruit.image}
-              stock={stock[fruit.name]}
+              stock={stock[fruit.id]}
               loading={loading}
               onAddToCart={handleAddToCart}
             />

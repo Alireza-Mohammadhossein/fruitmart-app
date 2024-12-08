@@ -38,8 +38,9 @@ const Cart: React.FC = () => {
     // if (closeDialog) closeDialog();
   };
 
-  const handleAddToCart = (id: number, name: string, price: number) => {
-    if (stock[name] > 0) {
+
+  const handleAddToCart = (id:number ,name: string, price: number) => {
+    if (stock[id] > 0) {
       dispatch(addItem({ id, name, price, quantity: 1 }));
       dispatch(reduceStock(id));
     } else {
