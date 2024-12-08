@@ -5,32 +5,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from '../../store/cartSlice';
 import { reduceStock, updateStock } from '../../store/stockSlice'; // Import the updateStock action
 import { RootState, AppDispatch } from '../../store/store';
-import mockStock from '../../mocks/stockApi'; // Import the mock API
+import { fruits, mockApi } from '../../mocks/stockApi'; // Import the mock API
 import FruitCard from '../../components/fruitCard/FruitCard';
 
-import appleImage from '../../assets/images/apples.png';
-import orangeImage from '../../assets/images/oranges.png';
-import mangoImage from '../../assets/images/mangos.png';
 
 
 
-const fruits = [
-  {
-    name: 'apple',
-    price: 2,
-    image: appleImage,
-  },
-  {
-    name: 'orange',
-    price: 1.5,
-    image: orangeImage,
-  },
-  {
-    name: 'mango',
-    price: 5,
-    image: mangoImage,
-  },
-];
+
 
 const Shop: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -42,7 +23,7 @@ const Shop: React.FC = () => {
   useEffect(() => {
     const fetchStock = async () => {
       try {
-        const stockLevels = await mockStock.getStockLevels(); // Call the mock API
+        const stockLevels = await mockApi.getStockLevels(); // Call the mock API
         dispatch(updateStock(stockLevels)); // Update stock in Redux store
         setLoading(false); // Data fetched, disable loading
       } catch (error) {
@@ -58,10 +39,10 @@ const Shop: React.FC = () => {
     return () => clearInterval(interval); // Cleanup on unmount
   }, [dispatch]);
 
-  const handleAddToCart = (name: string, price: number) => {
-    if (stock[name] > 0) {
-      dispatch(addItem({ name, price, quantity: 1 }));
-      dispatch(reduceStock(name));
+  const handleAddToCart = (id:number ,name: string, price: number) => {
+    if (stock[id] > 0) {
+      dispatch(addItem({ id, name, price, quantity: 1 }));
+      dispatch(reduceStock(id));
     } else {
       alert(`${name} is out of stock`);
     }
@@ -75,7 +56,8 @@ const Shop: React.FC = () => {
         <div className="shop__list">
           {fruits.map((fruit) => (
             <FruitCard
-              key={fruit.name}
+              key={fruit.id}
+              id={fruit.id}
               name={fruit.name}
               price={fruit.price}
               image={fruit.image}

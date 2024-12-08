@@ -1,15 +1,16 @@
 import React from 'react';
 
 interface FruitCardProps {
+  id: number,
   name: string;
   price: number;
   image: string;
   stock: number | undefined;
   loading: boolean;
-  onAddToCart: (name: string, price: number) => void;
+  onAddToCart: (id: number, name: string, price: number) => void;
 }
 
-const FruitCard: React.FC<FruitCardProps> = ({ name, price, image, stock, loading, onAddToCart }) => {
+const FruitCard: React.FC<FruitCardProps> = ({ id, name, price, image, stock, loading, onAddToCart }) => {
   
   return (
     <div className="shop__item">
@@ -30,7 +31,7 @@ const FruitCard: React.FC<FruitCardProps> = ({ name, price, image, stock, loadin
           <button
             className="btn btn--primary"
             disabled={stock === 0}
-            onClick={() => onAddToCart(name, price)}
+            onClick={() => onAddToCart(id, name, price)}
           >
             {stock === 0 ? 'Out of Stock' : 'Add to Cart'}
           </button>

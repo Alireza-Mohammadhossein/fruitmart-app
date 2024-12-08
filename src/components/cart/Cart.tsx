@@ -20,30 +20,28 @@ const Cart: React.FC = () => {
   const cart = useSelector((state: RootState) => state.cart);
   const stock = useSelector((state: RootState) => state.stock);
 
-  console.log('cart.tsx stock', stock)
-  console.log('cart.tsx cart', cart)
 
 
-  const handleDecrement = (itemName: string) => {
-    const itemInCart = cart.items.find(item => item.name === itemName);
+  const handleDecrement = (itemID: number) => {
+    const itemInCart = cart.items.find(item => item.id === itemID);
     if (itemInCart && itemInCart.quantity > 0) {
-      dispatch(removeItem(itemName));
-      dispatch(increaseStock({ name: itemName, quantity: 1 }));
+      dispatch(removeItem(itemID));
+      dispatch(increaseStock({ id: itemID, quantity: 1 }));
     }
   };
 
   const handleEmptyCart = () => {
     cart.items.forEach(item => {
-      dispatch(increaseStock({ name: item.name, quantity: item.quantity }));
+      dispatch(increaseStock({ id: item.id, quantity: item.quantity }));
     });
     dispatch(clearCart());
     // if (closeDialog) closeDialog();
   };
 
-  const handleAddToCart = (name: string, price: number) => {
+  const handleAddToCart = (id: number, name: string, price: number) => {
     if (stock[name] > 0) {
-      dispatch(addItem({ name, price, quantity: 1 }));
-      dispatch(reduceStock(name));
+      dispatch(addItem({ id, name, price, quantity: 1 }));
+      dispatch(reduceStock(id));
     } else {
       alert(`${name} is out of stock`);
     }
@@ -76,7 +74,7 @@ const Cart: React.FC = () => {
                 <TableBody>
                   {cart.items.map(item => (
                     <TableRow
-                      key={item.name}
+                      key={item.id}
                     >
                       <TableCell>{item.name}</TableCell>
                       <TableCell align="right">{item.quantity}</TableCell>
@@ -85,14 +83,14 @@ const Cart: React.FC = () => {
                       <TableCell align="right">
                         <button
                           className='btn btn--secondary'
-                          onClick={() => handleDecrement(item.name)}
+                          onClick={() => handleDecrement(item.id)}
                         >
                           --
                         </button>
                         <button
                           className='btn btn--secondary ml-5'
-                          disabled={stock[item.name] === 0}
-                          onClick={() => handleAddToCart(item.name, item.price)}
+                          disabled={stock[item.id] === 0}
+                          onClick={() => handleAddToCart(item.id, item.name, item.price)}
                         >
                           +
                         </button>

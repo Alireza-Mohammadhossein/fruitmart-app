@@ -17,13 +17,13 @@ const stockSlice = createSlice({
   name: 'stock',
   initialState,
   reducers: {
-    reduceStock(state, action: PayloadAction<string>) {
+    reduceStock(state, action: PayloadAction<number>) {
       if (state[action.payload] > 0) {
         state[action.payload] -= 1;
       }
     },
-    increaseStock(state, action: PayloadAction<{ name: string; quantity: number }>) {
-      state[action.payload.name] += action.payload.quantity;
+    increaseStock(state, action: PayloadAction<{ id:number, quantity: number }>) {
+      state[action.payload.id] += action.payload.quantity;
     },
     resetStock() {
       return initialState;

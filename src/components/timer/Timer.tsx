@@ -51,8 +51,9 @@ const Timer: React.FC = () => {
 
   const handleEmptyCart = () => {
     cartItems.forEach(item => {
-      dispatch(increaseStock({ name: item.name, quantity: item.quantity }));
+      dispatch(increaseStock({ id: item.id, quantity: item.quantity }));
     });
+    
     dispatch(clearCart());
     // if (closeDialog) closeDialog();
   };
