@@ -18,10 +18,10 @@ const Timer: React.FC = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state: RootState) => state.cart.items);
 
-  const [timer, setTimer] = useState(9);
+  const [timer, setTimer] = useState(300);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
 
-  const progress = (timer / 9) * 100;
+  const progress = (timer / 300) * 100;
   
 
   // Start timer when the first item is added to the cart
@@ -30,7 +30,7 @@ const Timer: React.FC = () => {
       setIsTimerRunning(true);
     } else {
       setIsTimerRunning(false);
-      setTimer(9); // Reset the timer when the cart is empty
+      setTimer(300); // Reset the timer when the cart is empty
     }
   }, [cartItems]);
 
@@ -67,7 +67,7 @@ const Timer: React.FC = () => {
       });
 
       handleEmptyCart();
-      setTimer(9);
+      setTimer(300);
       setIsTimerRunning(false);
     }
   }, [timer, dispatch]);

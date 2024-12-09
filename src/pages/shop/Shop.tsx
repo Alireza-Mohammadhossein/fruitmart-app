@@ -37,7 +37,6 @@ const Shop: React.FC = () => {
   useEffect(() => {
     // Set 5 minutes timer to refetch the stock
     const interval = setInterval(() => {
-      // console.log('Fetching stock levels...');
       fetchStock();
     }, 300000);
 
