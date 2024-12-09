@@ -7,20 +7,21 @@ import 'react-toastify/dist/ReactToastify.css';
 import { LinearProgress } from "@mui/material";
 
 import { clearCart } from '../../store/cartSlice';
-import { increaseStock } from '../../store/stockSlice';
 import { RootState } from '../../store/store';
+import useFetchStock from '../../hooks/useFetchStock';
 
 
 
 
 const Timer: React.FC = () => {
+  const { fetchStock } = useFetchStock();
   const dispatch = useDispatch();
   const cartItems = useSelector((state: RootState) => state.cart.items);
-  
-  const [timer, setTimer] = useState(300);
+
+  const [timer, setTimer] = useState(9);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
 
-  const progress = (timer / 300) * 100;
+  const progress = (timer / 9) * 100;
   
 
   // Start timer when the first item is added to the cart
@@ -29,7 +30,7 @@ const Timer: React.FC = () => {
       setIsTimerRunning(true);
     } else {
       setIsTimerRunning(false);
-      setTimer(300); // Reset the timer when the cart is empty
+      setTimer(9); // Reset the timer when the cart is empty
     }
   }, [cartItems]);
 
@@ -47,15 +48,9 @@ const Timer: React.FC = () => {
 
 
   const handleEmptyCart = () => {
-    cartItems.forEach(item => {
-      dispatch(increaseStock({ id: item.id, quantity: item.quantity }));
-    });
-    
+    fetchStock();
     dispatch(clearCart());
-    // if (closeDialog) closeDialog();
   };
-
-
 
   // Clear cart and reset stock when timer reaches 0
   useEffect(() => {
@@ -72,9 +67,7 @@ const Timer: React.FC = () => {
       });
 
       handleEmptyCart();
-
-      setTimer(300);
-      
+      setTimer(9);
       setIsTimerRunning(false);
     }
   }, [timer, dispatch]);
@@ -86,8 +79,6 @@ const Timer: React.FC = () => {
     const remainingSeconds = seconds % 60;
     return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
   };
-
-
 
 
 

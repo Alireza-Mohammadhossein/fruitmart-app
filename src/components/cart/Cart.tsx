@@ -1,19 +1,21 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+import { Table, TableBody, TableCell, TableHead, TableRow }  from '@mui/material';
+
 import { RootState } from '../../store/store';
 import { removeItem, clearCart } from '../../store/cartSlice';
 import { increaseStock } from '../../store/stockSlice';
 import { addItem } from '../../store/cartSlice';
 import { reduceStock } from '../../store/stockSlice';
-
-import { Table, TableBody, TableCell, TableHead, TableRow }  from '@mui/material';
+import useFetchStock from '../../hooks/useFetchStock';
 
 import './Cart.scss';
 
 
 
 const Cart: React.FC = () => {
+  const { fetchStock } = useFetchStock();
 
   const dispatch = useDispatch();
   const cart = useSelector((state: RootState) => state.cart);
@@ -27,11 +29,10 @@ const Cart: React.FC = () => {
     }
   };
 
+
   const handleEmptyCart = () => {
-    cart.items.forEach(item => {
-      dispatch(increaseStock({ id: item.id, quantity: item.quantity }));
-    });
     dispatch(clearCart());
+    fetchStock();
   };
 
 

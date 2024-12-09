@@ -26,17 +26,13 @@ const stockSlice = createSlice({
       state[action.payload.id] += action.payload.quantity;
     },
     
-    resetStock() {
-      return initialState;
-    },
-    
     updateStock(state, action: PayloadAction<StockState>) {
       return action.payload; // Replace stock with fetched levels
     },
   },
 });
 
-export const { reduceStock, increaseStock, resetStock, updateStock } = stockSlice.actions;
+export const { reduceStock, increaseStock, updateStock } = stockSlice.actions;
 export default stockSlice.reducer;
 
 
