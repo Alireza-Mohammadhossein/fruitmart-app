@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/fruitmart-app/static/css/main.e2d7a794.css",
-    "main.js": "/fruitmart-app/static/js/main.a551704b.js",
+    "main.js": "/fruitmart-app/static/js/main.e01fc0de.js",
     "static/media/oranges.png": "/fruitmart-app/static/media/oranges.f082d22e09336a680c82.png",
     "static/media/apples.png": "/fruitmart-app/static/media/apples.b1360b8cd4c7b1290855.png",
     "static/media/mangos.png": "/fruitmart-app/static/media/mangos.0543f26fc1552ef13769.png",
     "index.html": "/fruitmart-app/index.html",
     "main.e2d7a794.css.map": "/fruitmart-app/static/css/main.e2d7a794.css.map",
-    "main.a551704b.js.map": "/fruitmart-app/static/js/main.a551704b.js.map"
+    "main.e01fc0de.js.map": "/fruitmart-app/static/js/main.e01fc0de.js.map"
   },
   "entrypoints": [
     "static/css/main.e2d7a794.css",
-    "static/js/main.a551704b.js"
+    "static/js/main.e01fc0de.js"
   ]
 }
