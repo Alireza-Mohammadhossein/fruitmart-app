@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { useTheme } from '../../context/ThemeContext';
 
-import { IconButton, Badge, Dialog, Switch, FormControlLabel, FormGroup } from '@mui/material';
+import { IconButton, Badge, Dialog } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
