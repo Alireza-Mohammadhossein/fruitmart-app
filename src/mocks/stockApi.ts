@@ -7,7 +7,7 @@ export const fruits = [
   {
     id: 0,
     name: 'apple',
-    price: 2,
+    price: 3,
     image: appleImage,
   },
   {
@@ -19,7 +19,7 @@ export const fruits = [
   {
     id:2,
     name: 'mango',
-    price: 5,
+    price: 4,
     image: mangoImage,
   },
 ];
@@ -28,7 +28,7 @@ export const fruits = [
 
 export const mockApi = {
   getStockLevels: async () => {
-    await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate delay
+    await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate delay
     return {
       0: 6,
       1: 1,

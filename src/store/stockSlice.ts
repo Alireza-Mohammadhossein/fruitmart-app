@@ -4,11 +4,6 @@ type StockState = {
   [key: string]: number;
 };
 
-// const initialState: StockState = {
-//   apple: 0,
-//   orange: 0,
-//   mango: 0,
-// };
 
 const initialState: StockState = {};
 
