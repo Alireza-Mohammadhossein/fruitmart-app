@@ -53,6 +53,7 @@ const Timer: React.FC = () => {
   };
 
   // Clear cart and reset stock when timer reaches 0
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (timer === 0) {
       toast.warning("Your cart has expired!", {
