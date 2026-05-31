@@ -23,14 +23,16 @@ const Shop: React.FC = () => {
 
 
   useEffect(() => {
-    // Fetch stock levels initially
+    // Fetch stock levels initially only when no persisted stock exists.
     const initialFetch = async () => {
-      await fetchStock();
+      if (Object.keys(stock).length === 0) {
+        await fetchStock();
+      }
       setLoading(false);
     };
 
     initialFetch();
-  },[]);
+  }, [fetchStock, stock]);
 
 
   // Fetch stock levels periodically using the mock API

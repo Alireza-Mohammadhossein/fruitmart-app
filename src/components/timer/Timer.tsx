@@ -13,24 +13,67 @@ import useFetchStock from '../../hooks/useFetchStock';
 
 
 
+const TIMER_STORAGE_KEY = 'fruitmart_timer';
+
+type TimerState = {
+  timer: number;
+  isTimerRunning: boolean;
+};
+
+const loadTimerState = (): TimerState => {
+  try {
+    const serializedState = localStorage.getItem(TIMER_STORAGE_KEY);
+    if (!serializedState) return { timer: 300, isTimerRunning: false };
+    const parsed = JSON.parse(serializedState);
+
+    return {
+      timer: typeof parsed.timer === 'number' ? parsed.timer : 300,
+      isTimerRunning: typeof parsed.isTimerRunning === 'boolean' ? parsed.isTimerRunning : false,
+    };
+  } catch (error) {
+    console.error('Failed to load timer state from localStorage:', error);
+    return { timer: 300, isTimerRunning: false };
+  }
+};
+
+const saveTimerState = (state: TimerState) => {
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem(TIMER_STORAGE_KEY, serializedState);
+  } catch (error) {
+    console.error('Failed to save timer state to localStorage:', error);
+  }
+};
+
 const Timer: React.FC = () => {
   const { fetchStock } = useFetchStock();
   const dispatch = useDispatch();
   const cartItems = useSelector((state: RootState) => state.cart.items);
 
-  const [timer, setTimer] = useState(300);
-  const [isTimerRunning, setIsTimerRunning] = useState(false);
+  const [timerState, setTimerState] = useState<TimerState>(loadTimerState);
+  const { timer, isTimerRunning } = timerState;
+
+  const updateTimer = (
+    partial: Partial<TimerState> | ((prev: TimerState) => Partial<TimerState>)
+  ) => {
+    setTimerState(prev => ({
+      ...prev,
+      ...(typeof partial === 'function' ? partial(prev) : partial),
+    }));
+  };
 
   const progress = (timer / 300) * 100;
-  
+
+  useEffect(() => {
+    saveTimerState(timerState);
+  }, [timerState]);
 
   // Start timer when the first item is added to the cart
   useEffect(() => {
     if (cartItems.length > 0) {
-      setIsTimerRunning(true);
+      updateTimer({ isTimerRunning: true });
     } else {
-      setIsTimerRunning(false);
-      setTimer(300); // Reset the timer when the cart is empty
+      updateTimer({ isTimerRunning: false, timer: 300 }); // Reset the timer when the cart is empty
     }
   }, [cartItems]);
 
@@ -40,7 +83,7 @@ const Timer: React.FC = () => {
     if (!isTimerRunning) return;
 
     const interval = setInterval(() => {
-      setTimer(prev => (prev > 0 ? prev - 1 : 0));
+      updateTimer(prev => ({ timer: prev.timer > 0 ? prev.timer - 1 : 0 }));
     }, 1000);
 
     return () => clearInterval(interval);
@@ -68,8 +111,7 @@ const Timer: React.FC = () => {
       });
 
       handleEmptyCart();
-      setTimer(300);
-      setIsTimerRunning(false);
+      updateTimer({ timer: 300, isTimerRunning: false });
     }
   }, [timer, dispatch]);
 
