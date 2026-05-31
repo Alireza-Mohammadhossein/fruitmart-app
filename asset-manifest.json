@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/fruitmart-app/static/css/main.e2d7a794.css",
-    "main.js": "/fruitmart-app/static/js/main.90c052f3.js",
+    "main.css": "/fruitmart-app/static/css/main.3e088cdd.css",
+    "main.js": "/fruitmart-app/static/js/main.826629b2.js",
     "static/media/oranges.png": "/fruitmart-app/static/media/oranges.f082d22e09336a680c82.png",
     "static/media/apples.png": "/fruitmart-app/static/media/apples.b1360b8cd4c7b1290855.png",
     "static/media/mangos.png": "/fruitmart-app/static/media/mangos.0543f26fc1552ef13769.png",
     "index.html": "/fruitmart-app/index.html",
-    "main.e2d7a794.css.map": "/fruitmart-app/static/css/main.e2d7a794.css.map",
-    "main.90c052f3.js.map": "/fruitmart-app/static/js/main.90c052f3.js.map"
+    "main.3e088cdd.css.map": "/fruitmart-app/static/css/main.3e088cdd.css.map",
+    "main.826629b2.js.map": "/fruitmart-app/static/js/main.826629b2.js.map"
   },
   "entrypoints": [
-    "static/css/main.e2d7a794.css",
-    "static/js/main.90c052f3.js"
+    "static/css/main.3e088cdd.css",
+    "static/js/main.826629b2.js"
   ]
 }
