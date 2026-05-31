@@ -1,38 +1,58 @@
 # Simple Product Cart (React)
 
-A simple React-based shopping cart application where users can add products to a cart with stock management and an auto-expiring cart feature.
+A React-based shopping cart application that demonstrates inventory management, cart state handling, and automatic cart expiration.
 
 ## Features
 
-- Displays a list of products with stock availability
+- Displays a list of products with available stock levels
 - Prevents adding out-of-stock products to the cart
-- Enforces stock limits when adding items to the cart
-- Automatically updates stock when items are added to the cart
-- Shopping cart with real-time quantity updates
-- Cart automatically clears after 5 minutes of inactivity (timer-based reset)
+- Prevents adding more items than available stock
+- Updates inventory levels in real time when products are added to the cart
+- Shopping cart with quantity management
+- Automatic cart expiration after 5 minutes
+- Countdown timer showing the remaining cart lifetime
+- Persists cart data using Local Storage
+- Restores cart state after page refresh
 
 ## Tech Stack
 
 - React
-- JavaScript / TypeScript (if used, mention correct one)
+- TypeScript
 - CSS
+- Local Storage API
 
-## How it works
+## Business Logic
 
-- The app starts with a predefined list of 3 products:
-  - One product with 0 stock (disabled for purchase)
-  - One product with 1 stock
-  - One product with 5 stock
+The application starts with three products:
 
-- When a product is added to the cart:
-  - Stock is decreased accordingly
-  - Cart state is updated immediately
-  - User cannot exceed available stock
+| Product | Initial Stock |
+|----------|----------|
+| Product Mango | 0 |
+| Product Orange | 1 |
+| Product Apple | 6 |
 
-- A 5-minute countdown starts when the first item is added to the cart
-- When the timer expires, the cart is automatically cleared
+### Inventory Management
 
-## How to run the project
+- Users can only add products that are in stock
+- Stock is reduced when products are added to the cart
+- Users cannot exceed the available inventory
+- Inventory is updated immediately within the UI
+
+### Cart Expiration
+
+- A 5-minute timer starts when the first item is added to the cart
+- The remaining time is displayed to the user
+- When the timer expires:
+  - The cart is automatically cleared
+  - Product inventory is reset to its original state
+
+### State Persistence
+
+- Cart contents are stored in Local Storage
+- The application restores the cart state after page refresh
+- The remaining cart lifetime is preserved while the session is active
+
+## Installation
 
 ```bash
 npm install
