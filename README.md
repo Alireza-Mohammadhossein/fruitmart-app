@@ -1,59 +1,99 @@
-# Simple Product Cart (React)
+# FruitMart
 
-A React-based shopping cart application that demonstrates inventory management, cart state handling, and automatic cart expiration.
+A React and TypeScript shopping cart application that demonstrates inventory management, cart persistence, automated cart expiration, and modern development workflows.
+
+## Live Demo
+
+**Application URL:** https://fruitmart-app.vercel.app/
 
 ## Features
 
-- Displays a list of products with available stock levels
-- Prevents adding out-of-stock products to the cart
-- Prevents adding more items than available stock
-- Updates inventory levels in real time when products are added to the cart
-- Shopping cart with quantity management
-- Automatic cart expiration after 5 minutes
-- Countdown timer showing the remaining cart lifetime
-- Persists cart data using Local Storage
-- Restores cart state after page refresh
+### Product Inventory Management
 
-## Tech Stack
+* Displays available products and stock quantities
+* Prevents adding out-of-stock products
+* Prevents adding more items than available inventory
+* Updates stock levels in real time when items are added to the cart
 
-- React
-- TypeScript
-- CSS
-- Local Storage API
+### Shopping Cart
 
-## Business Logic
-
-The application starts with three products:
-
-| Product | Initial Stock |
-|----------|----------|
-| Product Mango | 0 |
-| Product Orange | 1 |
-| Product Apple | 6 |
-
-### Inventory Management
-
-- Users can only add products that are in stock
-- Stock is reduced when products are added to the cart
-- Users cannot exceed the available inventory
-- Inventory is updated immediately within the UI
+* Add products to the cart
+* Manage item quantities
+* Real-time cart updates
+* Inventory-aware cart validation
 
 ### Cart Expiration
 
-- A 5-minute timer starts when the first item is added to the cart
-- The remaining time is displayed to the user
-- When the timer expires:
-  - The cart is automatically cleared
-  - Product inventory is reset to its original state
+* Automatically starts a countdown when the first item is added
+* Displays the remaining cart lifetime to the user
+* Automatically clears the cart after 5 minutes
+* Restores inventory when the cart expires
 
 ### State Persistence
 
-- Cart contents are stored in Local Storage
-- The application restores the cart state after page refresh
-- The remaining cart lifetime is preserved while the session is active
+* Persists cart data using Local Storage
+* Restores cart contents after page refresh
+* Preserves user progress during the active session
 
-## Installation
+### Development Workflow
+
+* Source control using Git and GitHub
+* Continuous Integration using GitHub Actions
+* Automated production deployment using Vercel
+
+## Tech Stack
+
+* React
+* TypeScript
+* CSS
+* Local Storage API
+* GitHub Actions
+* Vercel
+
+## Getting Started
+
+### Install Dependencies
 
 ```bash
 npm install
+```
+
+### Run Locally
+
+```bash
 npm start
+```
+
+### Production Build
+
+```bash
+npm run build
+```
+
+## CI/CD
+
+The project includes a simple CI pipeline using GitHub Actions that automatically validates the application when code is pushed to the repository.
+
+Deployment is handled through Vercel, enabling automated publishing of production builds.
+
+## Learning Objectives
+
+This project was created to practice:
+
+* React component architecture
+* TypeScript development
+* State management
+* Inventory management logic
+* Time-based application behaviour
+* Browser storage persistence
+* CI/CD fundamentals
+* Deployment workflows
+
+## Future Improvements
+
+* Backend API integration
+* User authentication
+* Product management dashboard
+* Automated testing
+* Responsive mobile-first design
+* Order history functionality
