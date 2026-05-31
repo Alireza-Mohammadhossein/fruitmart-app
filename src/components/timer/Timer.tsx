@@ -90,13 +90,7 @@ const Timer: React.FC = () => {
   }, [isTimerRunning]);
 
 
-  const handleEmptyCart = () => {
-    fetchStock();
-    dispatch(clearCart());
-  };
-
   // Clear cart and reset stock when timer reaches 0
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (timer === 0) {
       toast.warning("Your cart has expired!", {
@@ -110,10 +104,11 @@ const Timer: React.FC = () => {
         theme: "colored",
       });
 
-      handleEmptyCart();
+      fetchStock();
+      dispatch(clearCart());
       updateTimer({ timer: 300, isTimerRunning: false });
     }
-  }, [timer, dispatch]);
+  }, [timer, dispatch, fetchStock]);
 
 
   // Format timer into MM:SS
